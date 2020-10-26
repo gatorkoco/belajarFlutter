@@ -10,7 +10,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  bool isHidePassword = false;
+  bool isHidePassword = true;
   // final FocusNode _emailFocus = FocusNode();
   void passwordVisibility() {
     setState(() {

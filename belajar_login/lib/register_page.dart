@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:belajar_login/login_page.dart';
+// import 'package:belajar_login/login_page.dart';
 class RegisterPage extends StatefulWidget {
   static String tag = 'register-page';
   @override
@@ -9,7 +9,14 @@ class RegisterPage extends StatefulWidget {
 }
 
 class RegisterPageState extends State<RegisterPage> {
-  bool isHidePassword = false;
+  bool isHidePassword = true;
+  bool isHideConfirmPass = true;
+
+  void confirmPasswordVisibility(){
+    setState(() {
+      isHideConfirmPass = !isHideConfirmPass;
+    });
+  }
 
   void passwordVisibility() {
     setState(() {
@@ -78,18 +85,18 @@ class RegisterPageState extends State<RegisterPage> {
     );
     final confirmPassTxt = TextFormField(
       autofocus: false,
-      obscureText: isHidePassword,
+      obscureText: isHideConfirmPass,
       initialValue: '',
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.lock),
           hintText: 'Konfirmasi Kata Sandi',
           suffixIcon: GestureDetector(
             onTap: () {
-              passwordVisibility();
+              confirmPasswordVisibility();
             },
             child: Icon(
-              isHidePassword ? Icons.visibility_off : Icons.visibility,
-              color: isHidePassword ? Colors.grey : Colors.black,
+              isHideConfirmPass ? Icons.visibility_off : Icons.visibility,
+              color: isHideConfirmPass ? Colors.grey : Colors.black,
             ),
           ),
           isDense: true,
@@ -117,7 +124,7 @@ class RegisterPageState extends State<RegisterPage> {
         ),
         GestureDetector(
           onTap: (){
-            Navigator.of(context).pushNamed(LoginPage.tag);
+            Navigator.pop(context);
           },
           child: Text(
             'Masuk',
